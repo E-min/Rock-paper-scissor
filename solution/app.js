@@ -1,6 +1,5 @@
 const text = document.getElementById('text');
 const containerInfo = document.querySelector('.container--info');
-
 const containerHands = document.querySelector('.container--hands');
 
 window.addEventListener('load', () => {
@@ -12,24 +11,27 @@ window.addEventListener('load', () => {
 containerInfo.addEventListener('click', (event) => {
    const selected = event.target.classList[2];
     if(selected === 'fist' || selected === 'hand' || selected === 'scissor') {
-        action(event)
+        action(event);
     } else if (selected === 'restart') {
-        text.style.fontSize = '1rem'
-        document.querySelector(`.restart`).remove();
-        const deletePlayers = document.querySelectorAll('.container--hands .fa-regular');
-        deletePlayers.forEach(element => {
-           element.remove()
-        });
-        const createPlayerOne = document.createElement('i');
-        createPlayerOne.setAttribute('class', 'fa-regular fa-hand-back-fist player-1');
-        const createPlayerTwo = document.createElement('i');
-        createPlayerTwo.setAttribute('class', 'fa-regular fa-hand-back-fist player-2');
-        containerHands.prepend(createPlayerOne);
-        containerHands.appendChild(createPlayerTwo);
-
-        selectHand()
+        restart();
     }
 });
+
+const restart = () => {
+    text.style.fontSize = '1rem'
+    document.querySelector(`.restart`).remove();
+    const deletePlayers = document.querySelectorAll('.container--hands .fa-regular');
+    deletePlayers.forEach(element => {
+       element.remove()
+    });
+    const createPlayerOne = document.createElement('i');
+    createPlayerOne.setAttribute('class', 'fa-regular fa-hand-back-fist player-1');
+    const createPlayerTwo = document.createElement('i');
+    createPlayerTwo.setAttribute('class', 'fa-regular fa-hand-back-fist player-2');
+    containerHands.prepend(createPlayerOne);
+    containerHands.appendChild(createPlayerTwo);
+    selectHand()
+}
 
 const action = (event) => {
     const playerOne = document.querySelector('.player-1');
